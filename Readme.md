@@ -6,7 +6,7 @@ Program ini menggunakan _object tracking_ untuk melacak setiap lubang yang terde
 
 ## 📸 Demo Hasil Program
 
-![Screenshot_Hasil](Screenshot_Hasil.png)
+![Demo Hasil Program](Demo.png)
 _Catatan: Ganti 'Screenshot_Hasil.jpg' dengan nama file screenshot Anda._
 
 ---
