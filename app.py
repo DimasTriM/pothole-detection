@@ -6,7 +6,7 @@ import os
 import subprocess
 
 # Judul
-st.title("🚗 Pothole Detection System (Demo)")
+st.title("Pothole Detection System Computer Vision YOLOv8")
 st.write("Pilih video sampel yang tersedia di bawah ini untuk melihat demonstrasi deteksi.")
 
 # --- SIDEBAR PENGATURAN ---
@@ -102,14 +102,15 @@ if st.button("🚀 Mulai Proses Deteksi", type="primary"):
                 x, y, x1, y1 = box_coords
                 
                 cv2.rectangle(img, (x, y), (x1, y1), (255, 0, 0), 2)
-                cv2.putText(img, str(pothole_number_in_frame), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 4)
-                cv2.putText(img, str(pothole_number_in_frame), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
-
+                
+                # Teks Nomor (Outline + Isi) 
+                cv2.putText(img, str(pothole_number_in_frame), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 4) # Outline Hitam
+                cv2.putText(img, str(pothole_number_in_frame), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2) # Isi Putih
+            
             # Teks Total
             total_text = f"Total Lubang: {len(tracked_pothole_ids)}"
-            cv2.putText(img, total_text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 0), 5)
-            cv2.putText(img, total_text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
-
+            cv2.putText(img, total_text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 0), 5) # Outline Hitam
+            cv2.putText(img, total_text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 2) # Isi Putih
             out.write(img)
             
             frame_index += 1
@@ -133,7 +134,7 @@ if st.button("🚀 Mulai Proses Deteksi", type="primary"):
         st.subheader("Hasil Deteksi")
         st.video(final_output_path)
         
-        st.info(f"Jumlah Total Lubang Unik Terdeteksi: {len(tracked_pothole_ids)}")
+        st.info(f"Jumlah Total Lubang Terdeteksi: {len(tracked_pothole_ids)}")
 
         # Bersihkan
         if os.path.exists(output_path): os.remove(output_path)
